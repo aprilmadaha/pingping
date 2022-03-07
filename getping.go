@@ -38,22 +38,22 @@ type Getping struct { //ip结构体
 	Max  string //最大值
 }
 
-type Alive struct {
+type Alive struct {//ping结果汇总结构体
 	gorm.Model
 	Tim  string //运行程序服务器/容器时间
-	Tar  string //targets
-	Ali  string //alive
-	Unr  string //unreachable
-	Uadd string //unknown addresses
+	Tar  string //targets 总共有多少IP
+	Ali  string //alive 存活的IP主机数
+	Unr  string //unreachable 不能到达的
+	Uadd string //unknown addresses 不能识别的
 }
 
 type Delay struct {
 	gorm.Model
 	Tim string //运行程序服务器/容器时间
-	Min string //min round trip time
+	Min string //min round trip time 最小延迟
 	Avg string
 	Max string
-	Ela string //elapsed real time
+	Ela string //elapsed real time 运行程序的时间fping
 }
 
 func main() {
