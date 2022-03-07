@@ -47,7 +47,7 @@ type Alive struct {//ping结果汇总结构体
 	Uadd string //unknown addresses 不能识别的
 }
 
-type Delay struct {
+type Delay struct {//延迟的汇总结构体
 	gorm.Model
 	Tim string //运行程序服务器/容器时间
 	Min string //min round trip time 最小延迟
