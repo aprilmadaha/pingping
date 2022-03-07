@@ -1,16 +1,10 @@
 package main
 
 import (
-	//	"fmt"
-
 	"log"
 	"time"
-
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-
-	//_ "github.com/jinzhu/gorm/dialects/sqlite"
-
 	"os/exec"
 	"regexp"
 )
@@ -57,26 +51,7 @@ type Delay struct {//延迟的汇总结构体
 }
 
 func main() {
-
-	// db, err = gorm.Open("sqlite3", "../hello/test.db") //打开数据库
-	// if err != nil {
-	// 	log.Fatal("db connect error")
-	// }
-	// defer db.Close()
-	// db.AutoMigrate(&Getping{}, &Remark{})
-	// db.Find(&remarkArray)              //获取数据
-	// for _, nume := range remarkArray { //过滤出数据库的ip列的数据
-	// 	remarkIp = append(remarkIp, nume.Ip)
-	// }
-
-	// argArray := make([]string, 0) //整合参数
-	// argArray = append(argArray, "-a")
-	// argArray = append(argArray, "-c")
-	// argArray = append(argArray, "3")
-	// //	argArray = append(argArray, remarkIp...)
-	// argArray = append(argArray, "172.26.18.32/24")
-
-	ticker := time.NewTicker(time.Second * 60)
+	ticker := time.NewTicker(time.Second * 60)//每60秒执行一次
 	for {
 		select {
 		case <-ticker.C:
