@@ -39,6 +39,7 @@ type Alive struct {//ping结果汇总结构体
 	Ali  string //alive 存活的IP主机数
 	Unr  string //unreachable 不能到达的
 	Uadd string //unknown addresses 不能识别的
+	Per  float32 //percentage百分比
 }
 
 type Delay struct {//延迟的汇总结构体
