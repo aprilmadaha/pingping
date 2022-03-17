@@ -163,9 +163,22 @@ func main() {
 	//db.Table("remarks").Select("remarks.desc, remarks.ip, getpings.avg").Joins("left JOIN getpings on getpings.ip = remarks.ip").Scan(&device)
 	//	db.Table("remarks").Where("getpings.tim = ?", time).Select("remarks.desc, remarks.ip, getpings.avg").Joins("JOIN getpings on getpings.ip = remarks.ip").Find(&device)
 	//db.Table("remarks").Where("getpings.tim = ?", time).Select("remarks.desc, remarks.ip, getpings.avg").Joins("JOIN getpings on getpings.ip = remarks.ip").Create(&device)
-	db.Table("remarks").Where("getpings.tim = ?", time).Select("remarks.desc, remarks.ip, getpings.avg").Joins("left join getpings on getpings.ip = remarks.ip").Scan(&device)
+
+	//db.Table("remarks").Where("getpings.tim = ?", time).Select("remarks.desc, remarks.ip, getpings.avg").Joins("left join getpings on getpings.ip = remarks.ip").Scan(&device)
+	//db.Table("getpings").Where("getpings.tim = ?", time).Select("remarks.desc, remarks.ip, getpings.avg").Joins("left join remarks on remarks.ip = getpings.ip").Find(&device)
+	//db.Table("remarks").Where("getpings.tim = ?", time).Select("remarks.desc, remarks.ip, getpings.avg").Joins("left join getpings on getpings.ip = remarks.ip").Find(&device)
+	// rows, _ := db.Table("remarks").Where("getpings.tim = ?", time).Select("remarks.desc, remarks.ip, getpings.avg").Joins("join getpings on getpings.ip = remarks.ip").Rows()
+	// for rows.Next() {
+	// 	//fmt.Println(rows)
+	// 	log.Println(rows)
+	// }
+	//	db.Table("remarks").Where("getpings.tim = ?", time).Select("remarks.desc, remarks.ip, getpings.avg").Joins("left join getpings on getpings.ip = remarks.ip").Find(&device)
+	//db.Model(&Booking{}).Select("bookings.id, bookings.user, bookings.members, bookings.class_id, classes.name").Joins("left join classes on bookings.class_id = classes.id").Scan(&bookings)
+
+	db.Model(&Remark{}).Select("remarks.desc, remarks.ip, getpings.avg").Joins("left join getpings on getpings.ip = remarks.ip").Scan(&device).Where("getpings.tim = ?", time)
 	fmt.Println("device", device)
-	//db.Create(&device)
+
+	//db.Exec()
 	for _, devicenum := range device {
 		db.Create(&Device{
 			Desc: devicenum.Desc,
@@ -173,6 +186,7 @@ func main() {
 			Avg:  devicenum.Avg,
 		})
 	}
+
 }
 
 // }
